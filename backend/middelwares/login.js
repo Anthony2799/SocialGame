@@ -1,3 +1,8 @@
+const express = require('express'),
+app = express();
+
+
+
 const verificacion = {
     isLoggedIn : function (req, res, next)
                 {
@@ -6,3 +11,5 @@ const verificacion = {
                 }
     
 }
+
+module.exports = verificacion;
