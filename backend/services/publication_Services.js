@@ -1,5 +1,6 @@
 const getConecction = require('./../libs/getConecction');
 const uuidv4 = require("uuid");
+const { encrypt, compare} = require("./../helper/helperCrypt");
 
 class Publication_query{
 
@@ -25,6 +26,7 @@ class Publication_query{
     async create(data){
         const uuid  = uuidv4.v4();
         data.uuid = uuid;
+        data.password = await encrypt(data.password);
         let result =this.findOne(data.uuid)
         if (result != null && result != undefined)
             {
@@ -33,7 +35,6 @@ class Publication_query{
                                                   uuid, name, subname, password, email)
                                                   VALUES ('${data.uuid}', '${data.name}', '${data.subname}', 
                                                   '${data.password}', '${data.email}')`,
-                                                  
                                                   (err, req)=>{
                                                     console.log(req)
                                                     console.error(err);
