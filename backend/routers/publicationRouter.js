@@ -4,7 +4,7 @@ const product = new publication_Service();
 //midellwar = require('./../middelwares/login'),
 rout = express.Router();
 
-rout.get('/login/',async (req, res)=>{
+rout.get('/login',async (req, res)=>{
     try{
         let list = await product.find();
         res.json(list);
@@ -17,8 +17,9 @@ rout.get('/login/',async (req, res)=>{
     
 });
 
-rout.post('/login/',async (req, res)=>{
+rout.post('/login',async (req, res, next)=>{
     try{
+        
         if (await product.create(req.body)){
             res.send("Exit");
         }
