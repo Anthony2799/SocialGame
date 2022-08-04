@@ -11,7 +11,5 @@ const compare = async (passwordNatural, hashPassword)=>{
     }else{
         return false
     }
-    
-    return valides;
 }
 module.exports = { encrypt, compare};
